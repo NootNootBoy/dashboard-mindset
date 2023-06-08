@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (isset($_SESSION['user_id'])) {
+    echo 'Vous êtes connecté en tant que ' . $_SESSION['user_id'];
+} else {
+    echo 'Vous n\'êtes pas connecté';
+}
+
     $host = '176.31.132.185';
     $db   = 'ohetkg_dashboar_db';
     $user = 'ohetkg_dashboar_db';
@@ -31,6 +38,15 @@ try {
         <h2>Connexion</h2>
         <?php echo $connectionStatus; ?>
         <!-- Rest of your login form goes here -->
+        <form action="login.php" method="post">
+        <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <input type="submit" value="Se connecter">
+        </form>
+
+    </div>
+    <div class="logout">
+     <a href="logout.php">Se déconnecter</a>
     </div>
 </body>
 </html>

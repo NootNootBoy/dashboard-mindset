@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (isset($_SESSION['user_id'])) {
+    echo 'Vous êtes connecté en tant que ' . $_SESSION['user_id'];
+} else {
+    echo 'Vous n\'êtes pas connecté';
+}
+
 $host = '176.31.132.185';
 $db   = 'ohetkg_dashboar_db';
 $user = 'ohetkg_dashboar_db';

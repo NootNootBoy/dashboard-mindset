@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (isset($_SESSION['user_id'])) {
+    echo 'Vous êtes connecté en tant que ' . $_SESSION['user_id'];
+} else {
+    echo 'Vous n\'êtes pas connecté';
+}
+
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
@@ -15,7 +21,9 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="dashboard-container">
+        <a href="logout.php">Se déconnecter</a>
         <h2>Bienvenue <?php $_SESSION['user_id']?></h2>
+        
         <!-- Rest of your dashboard content goes here -->
     </div>
 </body>

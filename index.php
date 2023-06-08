@@ -8,6 +8,14 @@
     <div class="login-container">
         <h2>Connexion</h2>
         <?php
+        try
+        {
+            $sql = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        }
+        catch (Exception $e)
+        {
+            die('Erreur : ' . $e->getMessage());
+        }
         session_start();
         if (isset($_SESSION['error_message'])) {
             echo '<p class="error-message">' . $_SESSION['error_message'] . '</p>';

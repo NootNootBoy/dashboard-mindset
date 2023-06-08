@@ -1,4 +1,5 @@
 <?php
+session_start();
 $host = '176.31.132.185';
 $db   = 'ohetkg_dashboar_db';
 $user = 'ohetkg_dashboar_db';
@@ -22,11 +23,11 @@ $user = $stmt->fetch();
 
 if ($user && password_verify($password, $user['password'])) {
     // L'utilisateur est connecté
-    session_start();
     $_SESSION['user_id'] = $user['id'];
     header('Location: dashboard.php');
 } else {
     // Échec de la connexion
+    $_SESSION['error_message'] = 'Nom d\'utilisateur ou mot de passe incorrect.';
     header('Location: index.php');
 }
 ?>

@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
-$db   = 'ma_base_de_donnees';
-$user = 'mon_utilisateur';
-$pass = 'mon_mot_de_passe';
+$host = '176.31.132.185';
+$db   = 'ohetkg_dashboar_db';
+$user = 'ohetkg_dashboar_db';
+$pass = '3-t2_UfA1s*Q0Iu!';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

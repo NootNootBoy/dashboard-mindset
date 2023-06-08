@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,16 +14,9 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Menu</h2>
-        <ul>
-            <li>Action 1</li>
-            <li>Action 2</li>
-            <li>Action 3</li>
-        </ul>
-    </div>
-    <div class="content">
-        <h1>Bienvenue</h1>
+    <div class="dashboard-container">
+        <h2>Bienvenue <?php $_SESSION['user_id']?></h2>
+        <!-- Rest of your dashboard content goes here -->
     </div>
 </body>
 </html>

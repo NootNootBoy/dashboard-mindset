@@ -10,7 +10,7 @@
 // JS global variables
 let config = {
   colors: {
-    primary: '#696cff',
+    primary: '#fd7e14',
     secondary: '#8592a3',
     success: '#71dd37',
     info: '#03c3ec',
@@ -20,7 +20,7 @@ let config = {
     black: '#000',
     white: '#fff',
     body: '#f4f5fb',
-    headingColor: '#566a7f',
+    headingColor: '#222',
     axisColor: '#a1acb8',
     borderColor: '#eceef1'
   }

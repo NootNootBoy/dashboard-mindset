@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['user_id'])) {
-    echo 'Vous êtes connecté en tant que ' . $_SESSION['user_id'];
+if (isset($_SESSION['user_username'])) {
+    echo 'Vous êtes connecté en tant que ' . $_SESSION['user_username'];
 } else {
     echo 'Vous n\'êtes pas connecté';
 }

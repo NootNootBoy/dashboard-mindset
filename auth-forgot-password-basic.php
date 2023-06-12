@@ -1,3 +1,20 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+
+    // Générer un jeton unique
+    $token = bin2hex(random_bytes(50));
+
+    // Stocker le jeton dans la base de données
+    $stmt = $pdo->prepare('INSERT INTO password_resets (email, token) VALUES (?, ?)');
+    $stmt->execute([$email, $token]);
+
+    // Envoyer un e-mail à l'utilisateur avec le lien de réinitialisation
+    $resetLink = "https://dashboard-mindset.websr.fr/auth-forgot-password-basic.php?token=$token";
+    mail($email, 'Réinitialisation de votre mot de passe', "Cliquez sur ce lien pour réinitialiser votre mot de passe : $resetLink");
+}
+
+?>
 <!DOCTYPE html>
 
 <html
@@ -15,7 +32,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Mot de passe oublié</title>
 
     <meta name="description" content="" />
 
@@ -57,8 +74,8 @@
 
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner">
-          <!-- Register -->
+        <div class="authentication-inner py-4">
+          <!-- Forgot Password -->
           <div class="card">
             <div class="card-body">
               <!-- Logo -->
@@ -73,64 +90,34 @@
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Service interne de Mindset</h4>
-              <p class="mb-4">cette espace n'est pas réserver aux clients MINDSET</p>
-
-              <form id="formAuthentication" class="mb-3" action="login.php" method="POST">
+              <h4 class="mb-2">Mot de passe oublié? 🔒</h4>
+              <p class="mb-4">Entrez votre email et nous vous enverrons des instructions pour réinitialiser votre mot de passe              </p>
+              <form id="formAuthentication" class="mb-3" action="auth-forgot-password-basic.php" method="POST">
                 <div class="mb-3">
-                  <label for="email" class="form-label">Nom d'utilisateur</label>
+                  <label for="email" class="form-label">Email</label>
                   <input
                     type="text"
                     class="form-control"
                     id="email"
-                    name="username"
-                    placeholder="Entrer votre nom d'utilisateur"
+                    name="email"
+                    placeholder="Enter your email"
                     autofocus
                   />
                 </div>
-                <div class="mb-3 form-password-toggle">
-                  <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Mot de passe</label>
-                    <a href="auth-forgot-password-basic.html">
-                      <small>Mot de passe oublié ?</small>
-                    </a>
-                  </div>
-                  <div class="input-group input-group-merge">
-                    <input
-                      type="password"
-                      id="password"
-                      class="form-control"
-                      name="password"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password"
-                    />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="remember-me" />
-                    <label class="form-check-label" for="remember-me"> Maintenir la session </label>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Se connecter</button>
-                </div>
+                <button class="btn btn-primary d-grid w-100">Envoyer le lien de réinitialisation</button>
               </form>
-
-              <p class="text-center">
-                <span>Nouveau collaborateur : </span>
-                <a href="auth-register-basic.html">
-                  <span>S'inscire</span>
+              <div class="text-center">
+                <a href="index.html" class="d-flex align-items-center justify-content-center">
+                  <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
+                  Page de connexion
                 </a>
-              </p>
+              </div>
             </div>
           </div>
-          <!-- /Register -->
+          <!-- /Forgot Password -->
         </div>
       </div>
     </div>
-
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

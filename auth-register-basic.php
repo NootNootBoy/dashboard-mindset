@@ -15,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Page de connexion</title>
+    <title>S'inscire au Dashboard</title>
 
     <meta name="description" content="" />
 
@@ -58,7 +58,7 @@
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
-          <!-- Register -->
+          <!-- Register Card -->
           <div class="card">
             <div class="card-body">
               <!-- Logo -->
@@ -73,28 +73,27 @@
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Service interne de Mindset</h4>
-              <p class="mb-4">cette espace n'est pas réserver aux clients MINDSET</p>
+              <h4 class="mb-2">Faites votre demande d'accès </h4>
+              <p class="mb-4">au dashboard de Mindset 🚀</p>
 
-              <form id="formAuthentication" class="mb-3" action="login.php" method="POST">
+              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
                 <div class="mb-3">
-                  <label for="email" class="form-label">Nom d'utilisateur</label>
+                  <label for="username" class="form-label">Utilisateur</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="email"
+                    id="username"
                     name="username"
                     placeholder="Entrer votre nom d'utilisateur"
                     autofocus
                   />
                 </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" class="form-control" id="email" name="email" placeholder="Entrer votre email" />
+                </div>
                 <div class="mb-3 form-password-toggle">
-                  <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Mot de passe</label>
-                    <a href="auth-forgot-password-basic.php">
-                      <small>Mot de passe oublié ?</small>
-                    </a>
-                  </div>
+                  <label class="form-label" for="password">Mot de passe</label>
                   <div class="input-group input-group-merge">
                     <input
                       type="password"
@@ -107,26 +106,28 @@
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
+
                 <div class="mb-3">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="remember-me" />
-                    <label class="form-check-label" for="remember-me"> Maintenir la session </label>
+                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
+                    <label class="form-check-label" for="terms-conditions">
+                      J'accepte la
+                      <a href="javascript:void(0);">politique de confidentialité et conditions</a>
+                    </label>
                   </div>
                 </div>
-                <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Se connecter</button>
-                </div>
+                <button class="btn btn-primary d-grid w-100">S'inscire</button>
               </form>
 
               <p class="text-center">
-                <span>Nouveau collaborateur : </span>
-                <a href="auth-register-basic.php">
-                  <span>S'inscire</span>
+                <span>Vous avez déjà un compte?                </span>
+                <a href="index.html">
+                  <span>Connectez-vous à la place</span>
                 </a>
               </p>
             </div>
           </div>
-          <!-- /Register -->
+          <!-- Register Card -->
         </div>
       </div>
     </div>

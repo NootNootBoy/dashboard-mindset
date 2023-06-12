@@ -1,5 +1,8 @@
 <?php
 
+session_start(); // Ajoutez cette ligne
+
+
 $host = '176.31.132.185';
 $db   = 'ohetkg_dashboar_db';
 $user = 'ohetkg_dashboar_db';

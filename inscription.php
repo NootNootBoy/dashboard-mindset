@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
     $pdo = new PDO($dsn, $user, $pass, $opt);
     $username = $_POST['username'];
+    $email = $_POST['email']; // Assurez-vous que vous avez un champ 'email' dans votre formulaire
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     // Vérifiez si le nom d'utilisateur existe déjà
@@ -32,8 +33,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $pdo->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
-    $stmt->execute([$username, $password]);
+    // Vérifiez si l'email existe déjà
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ?');
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
+    if ($user) {
+        // L'email existe déjà
+        $_SESSION['error_message'] = 'L\'email est déjà utilisé.';
+        header('Location: inscription.php'); // Redirigez vers inscription.php
+        exit;
+    }
+
+    $stmt = $pdo->prepare('INSERT INTO users (username, email, password) VALUES (?, ?, ?)');
+    $stmt->execute([$username, $email, $password]);
 
     // L'inscription a réussi
     $_SESSION['success_message'] = 'Inscription réussie. Vous pouvez maintenant vous connecter.';
@@ -41,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -53,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Inscription</h2>
         <form action="inscription.php" method="post">
             <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
             <input type="submit" value="S'inscrire">
         </form>

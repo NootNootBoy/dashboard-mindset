@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user) {
         // Le nom d'utilisateur existe déjà
         $_SESSION['error_message'] = 'Le nom d\'utilisateur est déjà pris.';
-        header('Location: inscription.php'); // Redirigez vers inscription.php
+        header('Location: auth-register-basic.php'); // Redirigez vers inscription.php
         exit;
     }
 
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user) {
         // L'email existe déjà
         $_SESSION['error_message'] = 'L\'email est déjà utilisé.';
-        header('Location: inscription.php'); // Redirigez vers inscription.php
+        header('Location: auth-register-basic.php'); // Redirigez vers inscription.php
         exit;
     }
 

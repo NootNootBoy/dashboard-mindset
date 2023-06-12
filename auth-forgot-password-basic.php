@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute([$email, $token]);
 
     // Envoyer un e-mail à l'utilisateur avec le lien de réinitialisation
-    $resetLink = "https://dashboard-mindset.websr.fr/auth-forgot-password-basic.php?token=$token";
-    mail($email, 'Réinitialisation de votre mot de passe', "Cliquez sur ce lien pour réinitialiser votre mot de passe : $resetLink");
+    $resetLink = "https://dashboard-mindset.websr.fr/reset_password.php?token=$token";
+    mail($email, 'Reinitialisation de votre mot de passe', "Cliquez sur ce lien pour reinitialiser votre mot de passe : $resetLink");
 }
 
 ?>

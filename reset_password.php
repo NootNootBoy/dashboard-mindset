@@ -2,6 +2,9 @@
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $token = $_GET['token'];
 
+    $user = "ohetkg_dashboar_db";
+    $pass = "3-t2_UfA1s*Q0Iu!";
+    $pdo = new PDO('mysql:host=176.31.132.185;dbname=ohetkg_dashboar_db', $user, $pass);
     // Vérifier si le jeton est dans la base de données
     $stmt = $pdo->prepare('SELECT * FROM password_resets WHERE token = ?');
     $stmt->execute([$token]);

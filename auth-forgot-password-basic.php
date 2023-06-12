@@ -1,9 +1,11 @@
 <?php
-  if (isset($_SESSION['username'])) {
+session_start();
+if (isset($_SESSION['username'])) {
     // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
     header('Location: dashboard.php');
     exit;
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];

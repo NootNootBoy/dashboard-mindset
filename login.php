@@ -1,10 +1,4 @@
 <?php
-session_start();
-if (isset($_SESSION['username'])) {
-    // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
-    header('Location: dashboard.php');
-    exit;
-}
 
 $host = '176.31.132.185';
 $db   = 'ohetkg_dashboar_db';

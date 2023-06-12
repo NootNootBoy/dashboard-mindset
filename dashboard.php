@@ -1,9 +1,11 @@
 <?php
-  if (isset($_SESSION['username'])) {
-    // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
-    header('Location: dashboard.php');
+session_start();
+if (!isset($_SESSION['username'])) {
+    // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
+    header('Location: index.php');
     exit;
 }
+
 
 ?>
 <!DOCTYPE html>

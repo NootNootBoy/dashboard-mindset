@@ -136,7 +136,12 @@ if (isset($_SESSION['error_message'])) {
                   <button class="btn btn-primary d-grid w-100" type="submit">Se connecter</button>
                 </div>
               </form>
-
+              <?php 
+              if (isset($_SESSION['error_message'])) {
+                  echo "<p class='text-danger'>" . $_SESSION['error_message'] . "</p>";
+                  unset($_SESSION['error_message']);
+              }
+              ?>
               <p class="text-center">
                 <span>Nouveau collaborateur : </span>
                 <a href="auth-register-basic.php">

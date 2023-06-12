@@ -118,13 +118,6 @@ if (isset($_SESSION['username'])) {
                 </div>
 
                 <div class="mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-                    <label class="form-check-label" for="terms-conditions">
-                      J'accepte la
-                      <a href="javascript:void(0);">politique de confidentialité et conditions</a>
-                    </label>
-                  </div>
                 </div>
                 <button class="btn btn-primary d-grid w-100">S'inscire</button>
               </form>

@@ -4,10 +4,12 @@ if (!isset($_SESSION['username'])) {
     // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
     header('Location: index.php');
     exit;
+} else {
+    // L'utilisateur est connecté, affichez son nom d'utilisateur dans la console du navigateur
+    echo "<script>console.log('Connecté en tant que : " . $_SESSION['username'] . "');</script>";
 }
-
-
 ?>
+
 <!DOCTYPE html>
 
 <html

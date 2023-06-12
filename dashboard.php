@@ -272,7 +272,7 @@ if (!isset($_SESSION['username'])) {
                     <li>
                       <a class="dropdown-item" href="auth-login-basic.html">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                        <span class="align-middle"><a href="logout.php">Log Out</a></span>
                       </a>
                     </li>
                   </ul>

@@ -1,5 +1,9 @@
 <?php
-
+  if (isset($_SESSION['username'])) {
+    // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
+    header('Location: dashboard.php');
+    exit;
+}
 $user = "ohetkg_dashboar_db";
 $pass = "3-t2_UfA1s*Q0Iu!";
 $pdo = new PDO('mysql:host=176.31.132.185;dbname=ohetkg_dashboar_db', $user, $pass);

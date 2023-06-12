@@ -1,3 +1,36 @@
+<?php
+  if (isset($_SESSION['username'])) {
+    // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
+    header('Location: dashboard.php');
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $host = '176.31.132.185';
+  $db   = 'ohetkg_dashboar_db';
+  $user = 'ohetkg_dashboar_db';
+  $pass = '3-t2_UfA1s*Q0Iu!';
+  $charset = 'utf8mb4';
+
+  $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+  $opt = [
+      PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      PDO::ATTR_EMULATE_PREPARES   => false,
+  ];
+  $pdo = new PDO($dsn, $user, $pass, $opt);
+
+  $username = $_POST['username'];
+  $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+  $email = $_POST['email']; // Récupérez l'email à partir du formulaire d'inscription
+
+  $stmt = $pdo->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?)');
+  $stmt->execute([$username, $password, $email]);
+
+  header('Location: dashboard.php');
+}
+?>
+
 <!DOCTYPE html>
 
 <html
@@ -90,7 +123,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Entrer votre email" />
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Entrer votre email" />
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <label class="form-label" for="password">Mot de passe</label>

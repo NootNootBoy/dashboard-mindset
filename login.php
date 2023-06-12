@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (isset($_SESSION['user_id'])) {
-    echo 'Vous êtes connecté en tant que ' . $_SESSION['user_id'];
-} else {
-    echo 'Vous n\'êtes pas connecté';
+if (isset($_SESSION['username'])) {
+    // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
+    header('Location: dashboard.php');
+    exit;
 }
 
 $host = '176.31.132.185';
@@ -29,7 +29,8 @@ $user = $stmt->fetch();
 
 if ($user && password_verify($password, $user['password'])) {
     // L'utilisateur est connecté
-    $_SESSION['user_id'] = $user['id'];
+    session_start();
+    $_SESSION['username'] = $username;
     header('Location: dashboard.php');
 } else {
     // Échec de la connexion

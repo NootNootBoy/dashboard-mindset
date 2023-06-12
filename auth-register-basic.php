@@ -121,6 +121,12 @@ if (isset($_SESSION['username'])) {
                 </div>
                 <button class="btn btn-primary d-grid w-100">S'inscire</button>
               </form>
+              <?php
+                if (isset($_SESSION['error_message'])) {
+                  echo "<p class='text-danger'>" . $_SESSION['error_message'] . "</p>";
+                  unset($_SESSION['error_message']);
+              }
+              ?>
 
               <p class="text-center">
                 <span>Vous avez déjà un compte?                </span>

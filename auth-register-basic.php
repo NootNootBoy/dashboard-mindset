@@ -86,7 +86,7 @@ if (isset($_SESSION['username'])) {
               <h4 class="mb-2">Faites votre demande d'accès </h4>
               <p class="mb-4">au dashboard de Mindset 🚀</p>
 
-              <form id="formAuthentication" class="mb-3" action="auth-register-basic.php" method="POST">
+              <form id="formAuthentication" class="mb-3" action="inscription.php" method="POST">
                 <div class="mb-3">
                   <label for="username" class="form-label">Utilisateur</label>
                   <input

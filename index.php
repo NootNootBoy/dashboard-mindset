@@ -9,10 +9,7 @@ if (isset($_SESSION['error_message'])) {
     echo "<p>" . $_SESSION['error_message'] . "</p>";
     unset($_SESSION['error_message']);
 }
-if (isset($_SESSION['success_message'])) {
-    echo "<p>" . $_SESSION['success_message'] . "</p>";
-    unset($_SESSION['success_message']);
-}
+
 ?>
 <!DOCTYPE html>
 
@@ -129,6 +126,12 @@ if (isset($_SESSION['success_message'])) {
                     <label class="form-check-label" for="remember-me"> Maintenir la session </label>
                   </div>
                 </div>
+                <?php 
+                  if (isset($_SESSION['success_message'])) {
+                    echo "<p class='text-success'>" . $_SESSION['success_message'] . "</p>";
+                    unset($_SESSION['success_message']);
+                  }
+                ?>
                 <div class="mb-3">
                   <button class="btn btn-primary d-grid w-100" type="submit">Se connecter</button>
                 </div>

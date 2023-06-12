@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user) {
         // Le nom d'utilisateur existe déjà
         $_SESSION['error_message'] = 'Le nom d\'utilisateur est déjà pris.';
-        header('Location: index.php');
+        header('Location: inscription.php'); // Redirigez vers inscription.php
         exit;
     }
 
@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>

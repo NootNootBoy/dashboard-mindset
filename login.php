@@ -29,7 +29,7 @@ $user = $stmt->fetch();
 
 if ($user && password_verify($password, $user['password'])) {
     // L'utilisateur est connecté
-    session_start();
+    
     $_SESSION['username'] = $username;
     header('Location: dashboard.php');
 } else {

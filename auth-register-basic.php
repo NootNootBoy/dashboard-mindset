@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
+                <a href="index.php" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <div class="d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
 
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <h4 class="mb-2">Faites votre demande d'accès </h4>
               <p class="mb-4">au dashboard de Mindset 🚀</p>
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              <form id="formAuthentication" class="mb-3" action="inscription.php" method="POST">
                 <div class="mb-3">
                   <label for="username" class="form-label">Utilisateur</label>
                   <input
@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
               <p class="text-center">
                 <span>Vous avez déjà un compte?                </span>
-                <a href="index.html">
+                <a href="index.php">
                   <span>Connectez-vous à la place</span>
                 </a>
               </p>

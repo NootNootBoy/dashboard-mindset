@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
+                <a href="index.php" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <div class="d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
 
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button class="btn btn-primary d-grid w-100">Envoyer le lien de réinitialisation</button>
               </form>
               <div class="text-center">
-                <a href="index.html" class="d-flex align-items-center justify-content-center">
+                <a href="index.php" class="d-flex align-items-center justify-content-center">
                   <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
                   Page de connexion
                 </a>

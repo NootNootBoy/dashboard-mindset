@@ -1,9 +1,8 @@
 <?php
-session_start();
-
-
-if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php');
+  if (isset($_SESSION['username'])) {
+    // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
+    header('Location: dashboard.php');
+    exit;
 }
 
 ?>

@@ -5,7 +5,14 @@ if (isset($_SESSION['username'])) {
     header('Location: dashboard.php');
     exit;
 }
-
+if (isset($_SESSION['error_message'])) {
+    echo "<p>" . $_SESSION['error_message'] . "</p>";
+    unset($_SESSION['error_message']);
+}
+if (isset($_SESSION['success_message'])) {
+    echo "<p>" . $_SESSION['success_message'] . "</p>";
+    unset($_SESSION['success_message']);
+}
 ?>
 <!DOCTYPE html>
 

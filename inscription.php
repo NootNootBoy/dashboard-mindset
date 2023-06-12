@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (isset($_SESSION['username'])) {
     // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
     header('Location: dashboard.php');
@@ -8,11 +7,10 @@ if (isset($_SESSION['username'])) {
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $host = '176.31.132.185';
-    $db   = 'ohetkg_dashboar_db';
+    $db = 'ohetkg_dashboar_db';
     $user = 'ohetkg_dashboar_db';
     $pass = '3-t2_UfA1s*Q0Iu!';
     $charset = 'utf8mb4';
-
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
     $opt = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -20,16 +18,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         PDO::ATTR_EMULATE_PREPARES   => false,
     ];
     $pdo = new PDO($dsn, $user, $pass, $opt);
-
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    // Vérifiez si le nom d'utilisateur existe déjà
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE username = ?');
+    $stmt->execute([$username]);
+    $user = $stmt->fetch();
+    if ($user) {
+        // Le nom d'utilisateur existe déjà
+        $_SESSION['error_message'] = 'Le nom d\'utilisateur est déjà pris.';
+        header('Location: index.php');
+        exit;
+    }
 
     $stmt = $pdo->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
     $stmt->execute([$username, $password]);
 
-    header('Location: dashboard.php');
+    // L'inscription a réussi
+    $_SESSION['success_message'] = 'Inscription réussie. Vous pouvez maintenant vous connecter.';
+    header('Location: index.php');
+    exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>

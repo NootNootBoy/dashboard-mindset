@@ -130,7 +130,7 @@ $commerciaux = $stmt->fetchAll();
               <select id="commercial_id" name="commercial_id">
                 <?php foreach ($commerciaux as $commercial): ?>
                   <option value="<?php echo $commercial['id']; ?>">
-                    <?php echo $commercial['nom'] . ' ' . $commercial['prenom']; ?>
+                    <?php echo $commercial['prenom'] . ' ' . $commercial['nom']; ?>
                   </option>
                 <?php endforeach; ?>
               </select><br>

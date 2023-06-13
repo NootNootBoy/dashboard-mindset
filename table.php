@@ -74,8 +74,8 @@
             </thead>
             <tbody class="table-border-bottom-0">
               <tr>
-                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php $site_info['name'] ?></strong></td>
-                <td><?php $site_info['description'] ?></td>
+              <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $site_info['name']; ?></strong></td>
+              <td><?php echo $site_info['description']; ?></td>
                 <td>
                   <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                     <li
@@ -107,7 +107,7 @@
                     </li>
                   </ul>
                 </td>
-                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php $site_info['version'] ?></strong></td>
+                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $site_info['version']; ?></strong></td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

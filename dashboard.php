@@ -8,6 +8,17 @@ if (!isset($_SESSION['username'])) {
     // L'utilisateur est connecté, affichez son nom d'utilisateur dans la console du navigateur
     echo "<script>console.log('Connecté en tant que : " . $_SESSION['username'] . "');</script>";
 }
+
+if (isset($_SESSION['success_message'])) {
+  echo '<p class="success">' . $_SESSION['success_message'] . '</p>';
+  unset($_SESSION['success_message']);
+}
+
+if (isset($_SESSION['error_message'])) {
+  echo '<p class="error">' . $_SESSION['error_message'] . '</p>';
+  unset($_SESSION['error_message']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -164,9 +175,9 @@ if (!isset($_SESSION['username'])) {
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
             <!-- Cards -->
             <li class="menu-item">
-              <a href="cards-basic.html" class="menu-link">
+              <a href="clients.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Cards</div>
+                <div data-i18n="Basic">Clients</div>
               </a>
             </li>
             <!-- User interface -->

@@ -53,23 +53,29 @@
       <script src="../assets/js/config.js"></script>
     </head>
 <body>
+          <?php
+              $url = 'https://cabinet-mindset-marketing.com/wp-json/mindsetapi/v1/site-info';
+              $response = file_get_contents($url);
+              $site_info = json_decode($response, true);
+            
+              ?>
     <div class="card">
         <h5 class="card-header">Striped rows</h5>
         <div class="table-responsive text-nowrap">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Project</th>
-                <th>Client</th>
-                <th>Users</th>
-                <th>Status</th>
+                <th>Site</th>
+                <th>Description</th>
+                <th>utilisateur</th>
+                <th>Version</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
               <tr>
-                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                <td>Albert Cook</td>
+                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php $site_info['name'] ?></strong></td>
+                <td><?php $site_info['description'] ?></td>
                 <td>
                   <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                     <li
@@ -101,7 +107,7 @@
                     </li>
                   </ul>
                 </td>
-                <td><span class="badge bg-label-primary me-1">Active</span></td>
+                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php $site_info['version'] ?></strong></td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -118,17 +124,7 @@
                   </div>
                 </td>
               </tr>
-              <?php
-              $url = 'https://cabinet-mindset-marketing.com/wp-json/mindsetapi/v1/site-info';
-              $response = file_get_contents($url);
-              $site_info = json_decode($response, true);
-              
-              echo 'Nom du site : ' . $site_info['name'] . '<br>';
-              echo 'Description : ' . $site_info['description'] . '<br>';
-              echo 'URL : ' . $site_info['url'] . '<br>';
-              echo 'Email de l\'administrateur : ' . $site_info['admin_email'] . '<br>';
-              echo 'Version de WordPress : ' . $site_info['version'] . '<br>';
-              ?>
+
             </tbody>
           </table>
         </div>

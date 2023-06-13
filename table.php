@@ -72,7 +72,7 @@
               $url = 'https://cabinet-mindset-marketing.com/wp-json/mindsetapi/v1/site-info';
               $response = file_get_contents($url);
               $site_info = json_decode($response, true);
-              include 'project_row.php';
+              include 'components/project_row.php';
 
               ?>
             </tbody>

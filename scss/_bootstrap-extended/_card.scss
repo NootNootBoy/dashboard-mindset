@@ -7,7 +7,7 @@
   .card-link {
     display: inline-block;
   }
-  // ! FIX: to remove padding top from first card-body if used with card-header
+  // ! FIX: To remove padding top from first card-body if used with card-header
   .card-header + .card-body,
   .card-header + .card-content > .card-body:first-of-type {
     padding-top: 0;
@@ -131,6 +131,10 @@
   & + &,
   > * + * {
     margin-left: 0.25rem;
+    @include rtl-style {
+      margin-left: 0;
+      margin-right: 0.25rem;
+    }
   }
 }
 
@@ -168,6 +172,10 @@
     @include ltr-style {
       border-right: $border-width solid $card-border-color;
     }
+
+    @include rtl-style {
+      border-left: $border-width solid $card-border-color;
+    }
   }
 }
 
@@ -179,6 +187,86 @@
 
       @include ltr-style {
         border-right-width: 0 !important;
+      }
+
+      @include rtl-style {
+        border-left-width: 0 !important;
+      }
+    }
+  }
+}
+// RTL
+// *******************************************************************************
+
+@include rtl-only {
+  .card-link + .card-link {
+    margin-right: $card-spacer-x;
+    margin-left: 0;
+  }
+
+  // Card advance
+  .card-action {
+    .card-header {
+      .card-action-title {
+        margin-left: 0.5rem;
+        margin-right: 0;
+      }
+
+      .card-action-element,
+      .card-action-element-toggle {
+        left: 1.5rem;
+        right: auto;
+      }
+    }
+  }
+  // Card group
+  @include media-breakpoint-up(sm) {
+    .card-group > .card {
+      border: $card-border-width solid $card-border-color;
+      border-radius: $card-border-radius;
+
+      .card-img-top,
+      .card-header:first-child {
+        @include border-top-radius($card-inner-border-radius);
+      }
+
+      .card-img-bottom,
+      .card-footer:last-child {
+        @include border-bottom-radius($card-inner-border-radius);
+      }
+
+      + .card {
+        border-right: 0;
+      }
+    }
+
+    // Handle rounded corners
+    @if $enable-rounded {
+      .card-group > .card {
+        &:not(:first-child) {
+          @include border-end-radius(0);
+
+          .card-img-top,
+          .card-header {
+            border-top-right-radius: 0;
+          }
+          .card-img-bottom,
+          .card-footer {
+            border-bottom-right-radius: 0;
+          }
+        }
+        &:not(:last-child) {
+          @include border-start-radius(0);
+
+          .card-img-top,
+          .card-header {
+            border-top-left-radius: 0;
+          }
+          .card-img-bottom,
+          .card-footer {
+            border-bottom-left-radius: 0;
+          }
+        }
       }
     }
   }

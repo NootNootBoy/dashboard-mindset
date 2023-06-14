@@ -51,3 +51,15 @@
     }
   }
 }
+
+@mixin template-list-group-timeline-variant($parent, $background) {
+  .list-group {
+    &.list-group-timeline {
+      #{$parent} {
+        &:before {
+          background-color: $background;
+        }
+      }
+    }
+  }
+}

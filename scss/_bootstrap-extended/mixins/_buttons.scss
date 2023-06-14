@@ -2,7 +2,14 @@
 // *******************************************************************************
 
 // Basic
-@mixin button-variant($background: null, $border: null, $active-background: null, $active-border: null) {
+@mixin button-variant(
+  $background: null,
+  $border: null,
+  $hover-background: null,
+  $hover-border: null,
+  $active-background: null,
+  $active-border: null
+) {
 }
 @mixin template-button-variant($parent, $background, $color: null, $border: null) {
   $background: $background;
@@ -43,10 +50,10 @@
     box-shadow: 0 0.125rem 0.25rem 0 rgba($background, 0.4);
 
     &:hover {
-      color: $hover-color;
-      @include gradient-bg($hover-background);
-      border-color: $hover-border;
-      transform: $btn-hover-transform;
+      color: $hover-color !important;
+      @include gradient-bg($hover-background !important);
+      border-color: $hover-border !important;
+      transform: $btn-hover-transform !important;
     }
 
     .btn-check:focus + &,
@@ -63,12 +70,13 @@
     .btn-check:active + &,
     &:active,
     &.active,
+    &.show.dropdown-toggle,
     .show > &.dropdown-toggle {
-      color: $active-color;
-      background-color: $active-background;
+      color: $active-color !important;
+      background-color: $active-background !important;
       // Remove CSS gradients if they're enabled
-      background-image: if($enable-gradients, none, null);
-      border-color: $active-border;
+      background-image: if($enable-gradients, none !important, null);
+      border-color: $active-border !important;
 
       &:focus {
         box-shadow: none;
@@ -77,7 +85,96 @@
 
     &.disabled,
     &:disabled {
-      box-shadow: none;
+      color: $disabled-color !important;
+      background-color: $disabled-background !important;
+      // Remove CSS gradients if they're enabled
+      background-image: if($enable-gradients, none !important, null);
+      border-color: $disabled-border !important;
+      box-shadow: none !important;
+    }
+  }
+
+  //? Button groups border (Uncomment if needed)
+  // .btn-group #{$parent},
+  // .input-group #{$parent} {
+  //   border-right: $input-btn-border-width solid $active-background;
+  //   border-left: $input-btn-border-width solid $active-background;
+  // }
+}
+
+// Label
+@mixin button-label-variant($background: null, $border: null, $active-background: null, $active-border: null) {
+}
+
+@mixin template-button-label-variant($parent, $background, $color: null, $border: null) {
+  // Using the $dark-style variable for condition as in label style text color can't compare with $color-contrast-light/dark
+  $border: transparent;
+
+  $label-color: if($color, $color, $background);
+  $hover-color: if($color, $color, color-contrast($background));
+
+  $label-background: if(
+    $hover-color == $color-contrast-light,
+    shade-color($background, $btn-label-bg-shade-amount, $card-bg),
+    tint-color($background, $btn-label-bg-tint-amount, $card-bg)
+  );
+
+  $hover-background: if(
+    $hover-color == $color-contrast-light,
+    shade-color($background, $btn-hover-bg-shade-amount),
+    tint-color($background, $btn-hover-bg-tint-amount)
+  );
+
+  $active-color: if($color, $color, color-contrast($background));
+  $active-background: if(
+    $hover-color == $color-contrast-light,
+    shade-color($background, $btn-active-bg-shade-amount),
+    tint-color($background, $btn-active-bg-tint-amount)
+  );
+
+  #{$parent} {
+    color: $label-color;
+    border-color: $border;
+    background: $label-background;
+
+    &:hover {
+      border-color: $border !important;
+      background: $hover-background !important;
+      color: $hover-color !important;
+      box-shadow: 0 0.125rem 0.25rem 0 rgba($background, 0.4) !important;
+      transform: $btn-hover-transform !important;
+    }
+
+    &:focus,
+    &.focus {
+      color: $hover-color;
+      background: $hover-background;
+      box-shadow: none !important;
+      transform: $btn-focus-transform;
+    }
+
+    &:active,
+    &.active,
+    &.show.dropdown-toggle,
+    .show > &.dropdown-toggle {
+      color: $active-color !important;
+      background-color: $active-background !important;
+      // Remove CSS gradients if they're enabled
+      background-image: if($enable-gradients, none !important, null);
+      border-color: $border !important;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    &.disabled,
+    &:disabled {
+      color: $label-color !important;
+      background-color: $label-background !important;
+      // Remove CSS gradients if they're enabled
+      background-image: if($enable-gradients, none !important, null);
+      border-color: transparent !important;
     }
   }
 
@@ -118,11 +215,11 @@
     background: transparent;
 
     &:hover {
-      color: $color-hover;
-      background-color: $hover-background;
-      border-color: $hover-background;
-      box-shadow: 0 0.125rem 0.25rem 0 rgba($background, 0.4);
-      transform: $btn-hover-transform;
+      color: $color-hover !important;
+      background-color: $hover-background !important;
+      border-color: $hover-background !important;
+      box-shadow: 0 0.125rem 0.25rem 0 rgba($background, 0.4) !important;
+      transform: $btn-hover-transform !important;
     }
 
     .btn-check:focus + &,
@@ -139,9 +236,9 @@
     &:active,
     &.active,
     &.dropdown-toggle.show {
-      color: $color-hover;
-      background-color: $active-background;
-      border-color: $active-background;
+      color: $color-hover !important;
+      background-color: $active-background !important;
+      border-color: $active-background !important;
       &:focus {
         box-shadow: none;
       }
@@ -149,7 +246,9 @@
 
     &.disabled,
     &:disabled {
-      box-shadow: none;
+      box-shadow: none !important;
+      color: $color !important;
+      background-color: transparent !important;
     }
   }
 

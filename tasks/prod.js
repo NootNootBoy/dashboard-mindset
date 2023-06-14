@@ -2,6 +2,7 @@ const path = require('path');
 const { src, dest, series } = require('gulp');
 const replace = require('gulp-replace');
 const useref = require('gulp-useref');
+var uglify = require('gulp-uglify');
 
 module.exports = conf => {
   // Copy templatePath html files and assets to buildPath
@@ -30,7 +31,15 @@ module.exports = conf => {
     return src(`${buildPath}/*.html`).pipe(useref()).pipe(dest(buildPath));
   };
 
-  const prodAllTask = series(prodCopyTask, prodRenameTasks, prodUseRefTasks);
+  // Uglify assets/js files
+  //--------------------------------------------------------------------------------
+  const prodMinifyJSTasks = function () {
+    return src(`${buildPath}/assets/js/**/*.js`)
+      .pipe(uglify())
+      .pipe(dest(`${buildPath}/assets/js/`));
+  };
+
+  const prodAllTask = series(prodCopyTask, prodRenameTasks, prodUseRefTasks, prodMinifyJSTasks);
 
   // Exports
   // ---------------------------------------------------------------------------
@@ -39,6 +48,7 @@ module.exports = conf => {
     copy: prodCopyTask,
     rename: prodRenameTasks,
     useref: prodUseRefTasks,
+    minifyJS: prodMinifyJSTasks,
     all: prodAllTask
   };
 };

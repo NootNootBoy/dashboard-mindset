@@ -1,10 +1,27 @@
 // Accordions
 // *******************************************************************************
 
+@each $color, $value in $theme-colors {
+  @if $color != primary {
+    // Mixins of different Advance Styling
+    @include template-accordion-header-variant('.accordion-header-#{$color}', $value);
+  }
+}
+
+// Accordion Popout Variant
+.accordion-popout {
+  .accordion-item {
+    transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    &:not(.active) {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}
+
 .accordion-header + .accordion-collapse .accordion-body {
   padding-top: 0;
 }
-
 .accordion {
   // accordion without icon
   &.accordion-without-arrow {
@@ -53,4 +70,21 @@
 .accordion > .card:not(:last-of-type) {
   border-radius: $accordion-border-radius !important;
   margin-bottom: 0.6875rem;
+}
+
+// RTL
+// *******************************************************************************
+
+@include rtl-only {
+  .accordion-button {
+    text-align: right;
+    &::after {
+      margin-left: 0;
+      margin-right: auto;
+      transform: rotate(180deg);
+    }
+    &:not(.collapsed)::after {
+      transform: rotate(90deg);
+    }
+  }
 }

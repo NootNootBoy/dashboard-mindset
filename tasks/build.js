@@ -27,7 +27,11 @@ module.exports = (conf, srcGlob) => {
             gulpIf(
               conf.minify,
               `sass scss:${conf.distPath}/css fonts:${conf.distPath}/fonts libs:${conf.distPath}/libs --style compressed --no-source-map`,
-              `sass scss:${conf.distPath}/css fonts:${conf.distPath}/fonts libs:${conf.distPath}/libs --no-source-map`
+              gulpIf(
+                conf.fastDev,
+                `sass scss/rtl:${conf.distPath}/css/rtl scss/pages:${conf.distPath}/css/pages fonts:${conf.distPath}/fonts libs:${conf.distPath}/libs --no-source-map`,
+                `sass scss:${conf.distPath}/css fonts:${conf.distPath}/fonts libs:${conf.distPath}/libs --no-source-map`
+              )
             ),
             function (err) {
               cb(err);
@@ -119,6 +123,14 @@ module.exports = (conf, srcGlob) => {
     {
       name: 'boxicons',
       path: 'node_modules/boxicons/fonts/*'
+    },
+    {
+      name: 'fontawesome',
+      path: 'node_modules/@fortawesome/fontawesome-free/webfonts/*'
+    },
+    {
+      name: 'flags',
+      path: 'node_modules/flag-icons/flags/**/*'
     }
   ].reduce(function (tasks, font) {
     const functionName = `buildFonts${font.name.replace(/^./, m => m.toUpperCase())}Task`;
@@ -138,7 +150,26 @@ module.exports = (conf, srcGlob) => {
     return tasks.concat([taskFunction]);
   }, []);
 
-  const buildFontsTask = parallel(FONT_TASKS);
+  // Formula module requires KaTeX - Quill Editor
+  const KATEX_FONT_TASK = [
+    {
+      name: 'katex',
+      path: 'node_modules/katex/dist/fonts/*'
+    }
+  ].reduce(function (tasks, font) {
+    const functionName = `buildFonts${font.name.replace(/^./, m => m.toUpperCase())}Task`;
+    const taskFunction = function () {
+      return src(font.path).pipe(dest(path.join(conf.distPath, '/libs/quill/fonts')));
+    };
+
+    Object.defineProperty(taskFunction, 'name', {
+      value: functionName
+    });
+
+    return tasks.concat([taskFunction]);
+  }, []);
+
+  const buildFontsTask = parallel(FONT_TASKS, KATEX_FONT_TASK);
   // Copy
   // -------------------------------------------------------------------------------
 
@@ -158,8 +189,14 @@ module.exports = (conf, srcGlob) => {
       )
     ).pipe(dest(conf.distPath));
   };
+  // Copy task for form validation plugin as premium plugin don't have npm package
+  const buildPluginCopyTask = function () {
+    return src(srcGlob('libs/formvalidation/dist/js/**/*.js')).pipe(
+      dest(`${conf.distPath}/libs/formvalidation/dist/js/`)
+    );
+  };
 
-  const buildAllTask = series(buildCssTask, buildJsTask, buildFontsTask, buildCopyTask);
+  const buildAllTask = series(buildCssTask, buildJsTask, buildFontsTask, buildCopyTask, buildPluginCopyTask);
 
   // Exports
   // ---------------------------------------------------------------------------
@@ -169,6 +206,7 @@ module.exports = (conf, srcGlob) => {
     js: buildJsTask,
     fonts: buildFontsTask,
     copy: buildCopyTask,
+    copyPlugins: buildPluginCopyTask,
     all: buildAllTask
   };
 };

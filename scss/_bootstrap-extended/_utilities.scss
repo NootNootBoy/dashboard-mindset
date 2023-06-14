@@ -694,6 +694,19 @@ $utilities: map-merge(
   }
 }
 
+@include rtl-only {
+  .row-bordered > .col::after,
+  .row-bordered > [class^='col-']::after,
+  .row-bordered > [class*=' col-']::after,
+  .row-bordered > [class^='col ']::after,
+  .row-bordered > [class*=' col ']::after,
+  .row-bordered > [class$=' col']::after,
+  .row-bordered > [class='col']::after {
+    left: auto;
+    right: -1px;
+  }
+}
+
 // Color
 // *******************************************************************************
 

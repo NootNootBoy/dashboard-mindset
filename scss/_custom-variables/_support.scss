@@ -1,14 +1,4 @@
 $enable-light-style: true;
-
-@mixin app-ltr($has-child: true) {
-  @content;
-}
-
-@mixin app-ltr-style() {
-  @content;
-}
-
-$enable-light-style: false;
 $enable-dark-style: true;
 $enable-rtl-support: true;
 

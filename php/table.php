@@ -1,28 +1,3 @@
-<?php
-// Votre code pour se connecter à la base de données ici
-$host = '176.31.132.185';
-$db   = 'ohetkg_dashboar_db';
-$user = 'ohetkg_dashboar_db';
-$pass = '3-t2_UfA1s*Q0Iu!';
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$opt = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
-$pdo = new PDO($dsn, $user, $pass, $opt);
-
-$stmt = $pdo->prepare('SELECT * FROM options');
-$stmt->execute();
-$options = $stmt->fetchAll();
-
-$stmt = $pdo->prepare('SELECT * FROM users WHERE rang = "commercial"');
-$stmt->execute();
-$commerciaux = $stmt->fetchAll();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <html
@@ -40,7 +15,7 @@ $commerciaux = $stmt->fetchAll();
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
       />
   
-      <title>Clients- Mindset</title>
+      <title>Dashboard - Mindset</title>
   
       <meta name="description" content="" />
   
@@ -80,7 +55,7 @@ $commerciaux = $stmt->fetchAll();
 <body>
 
     <div class="card">
-        <h5 class="card-header">Listes des clients : </h5>
+        <h5 class="card-header">Listes des sites : </h5>
         <div class="table-responsive text-nowrap">
           <table class="table table-striped">
             <thead>
@@ -93,51 +68,15 @@ $commerciaux = $stmt->fetchAll();
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
+            <?php
+              $url = 'https://cabinet-mindset-marketing.com/wp-json/mindsetapi/v1/site-info';
+              $response = file_get_contents($url);
+              $site_info = json_decode($response, true);
+              include './components/project_row.php';
+
+              ?>
             </tbody>
           </table>
-          <form action="add_client.php" method="post">
-              <label for="nom">Nom:</label><br>
-              <input type="text" id="nom" name="nom"><br>
-              <label for="prenom">Prénom:</label><br>
-              <input type="text" id="prenom" name="prenom"><br>
-              <label for="societe">Société:</label><br>
-              <input type="text" id="societe" name="societe"><br>
-              <label for="siret">SIRET:</label><br>
-              <input type="text" id="siret" name="siret"><br>
-              <label for="email">Email:</label><br>
-              <input type="email" id="email" name="email"><br>
-              <label for="temps_engagement">Temps d'engagement:</label><br>
-              <input type="number" id="temps_engagement" name="temps_engagement"><br>
-              <label for="date_signature">Date de signature:</label><br>
-              <input type="date" id="date_signature" name="date_signature"><br>
-              <label for="adresse">Adresse:</label><br>
-              <input type="text" id="adresse" name="adresse"><br>
-              <label for="ville">Ville:</label><br>
-              <input type="text" id="ville" name="ville"><br>
-              <label for="code_postal">Code Postal:</label><br>
-              <input type="text" id="code_postal" name="code_postal"><br>
-              <label for="pays">Pays:</label><br>
-              <input type="text" id="pays" name="pays"><br>
-              
-              <?php foreach ($options as $option): ?>
-                <div>
-                  <input type="checkbox" id="option<?php echo $option['id']; ?>" name="options[]" value="<?php echo $option['id']; ?>">
-                  <label for="option<?php echo $option['id']; ?>"><?php echo $option['nom']; ?></label>
-                </div>
-              <?php endforeach; ?>
-
-              <label for="commercial_id">Commercial:</label><br>
-              <select id="commercial_id" name="commercial_id">
-                <?php foreach ($commerciaux as $commercial): ?>
-                  <option value="<?php echo $commercial['id']; ?>">
-                    <?php echo $commercial['prenom'] . ' ' . $commercial['nom']; ?>
-                  </option>
-                <?php endforeach; ?>
-              </select><br>
-              <!-- Votre code pour les options et le commercial va ici -->
-
-              <input type="submit" value="Ajouter le Client">
-            </form>
         </div>
       </div>
       <script src="../assets/vendor/libs/jquery/jquery.js"></script>

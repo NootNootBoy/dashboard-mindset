@@ -3,7 +3,7 @@ session_start();
 
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php');
+    header('Location: ../index.php');
 }
 
 ?>
@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
 <html>
 <head>
     <title>Tableau de bord</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
     <div class="dashboard-container">

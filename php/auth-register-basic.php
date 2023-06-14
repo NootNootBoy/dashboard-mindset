@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['username'])) {
     // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
-    header('Location: dashboard.php');
+    header('Location: ../php/dashboard.php');
     exit;
 }
 ?>
@@ -73,7 +73,7 @@ if (isset($_SESSION['username'])) {
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.php" class="app-brand-link gap-2">
+                <a href="../index.php" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <div class="d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
 
@@ -130,7 +130,7 @@ if (isset($_SESSION['username'])) {
 
               <p class="text-center">
                 <span>Vous avez déjà un compte?                </span>
-                <a href="index.php">
+                <a href="../index.php">
                   <span>Connectez-vous à la place</span>
                 </a>
               </p>

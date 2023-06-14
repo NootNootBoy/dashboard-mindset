@@ -1,6 +1,6 @@
 <?php
 
-session_start(); // Ajoutez cette ligne
+session_start();
 
 
 $host = '176.31.132.185';
@@ -32,6 +32,6 @@ if ($user && password_verify($password, $user['password'])) {
 } else {
     // Échec de la connexion
     $_SESSION['error_message'] = 'Nom d\'utilisateur ou mot de passe incorrect.';
-    header('Location: index.php');
+    header('Location: ../index.php');
 }
 ?>

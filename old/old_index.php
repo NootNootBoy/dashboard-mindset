@@ -31,7 +31,7 @@ try {
 <html>
 <head>
     <title>Mon Interface</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
     <div class="login-container">

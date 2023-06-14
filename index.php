@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['username'])) {
     // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
-    header('Location: dashboard.php');
+    header('Location: ./php/dashboard.php');
     exit;
 }
 if (isset($_SESSION['error_message'])) {
@@ -89,7 +89,7 @@ if (isset($_SESSION['error_message'])) {
               <h4 class="mb-2">Service interne de Mindset</h4>
               <p class="mb-4">cette espace n'est pas réserver aux clients MINDSET</p>
 
-              <form id="formAuthentication" class="mb-3" action="login.php" method="POST">
+              <form id="formAuthentication" class="mb-3" action="./php/login.php" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Nom d'utilisateur</label>
                   <input
@@ -104,7 +104,7 @@ if (isset($_SESSION['error_message'])) {
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Mot de passe</label>
-                    <a href="auth-forgot-password-basic.php">
+                    <a href="./php/auth-forgot-password-basic.php">
                       <small>Mot de passe oublié ?</small>
                     </a>
                   </div>
@@ -144,7 +144,7 @@ if (isset($_SESSION['error_message'])) {
               ?>
               <p class="text-center">
                 <span>Nouveau collaborateur : </span>
-                <a href="auth-register-basic.php">
+                <a href="./php/auth-register-basic.php">
                   <span>S'inscire</span>
                 </a>
               </p>

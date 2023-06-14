@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             <div class="card">
                                 <div class="card-body">
                                     <div class="app-brand justify-content-center">
-                                        <a href="index.php" class="app-brand-link gap-2">
+                                        <a href="../index.php" class="app-brand-link gap-2">
                                             <span class="app-brand-logo demo">
                                                 <div class="d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                                                     <img src="assets/img/favicon/logo--mindset_black.png" class="img-thumbnail" alt="...">
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                             <button type="submit" class="btn btn-primary d-grid w-100">Changer le mot de passe</button>
                                         </form>
                                         <div class="text-center">
-                                            <a href="index.php" class="d-flex align-items-center justify-content-center">
+                                            <a href="../index.php" class="d-flex align-items-center justify-content-center">
                                                 <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
                                                 Page de connexion
                                             </a>

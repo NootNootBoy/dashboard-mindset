@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // L'inscription a réussi
     $_SESSION['success_message'] = 'Inscription réussie. Vous pouvez maintenant vous connecter.';
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 ?>

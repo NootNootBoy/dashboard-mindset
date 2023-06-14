@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['username'])) {
     // L'utilisateur est déjà connecté, redirigez-le vers le tableau de bord
-    header('Location: dashboard.php');
+    header('Location: ../php/dashboard.php');
     exit;
 }
 
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.php" class="app-brand-link gap-2">
+                <a href="../index.php" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <div class="d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
 
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <!-- /Logo -->
               <h4 class="mb-2">Mot de passe oublié? 🔒</h4>
               <p class="mb-4">Entrez votre email et nous vous enverrons des instructions pour réinitialiser votre mot de passe              </p>
-              <form id="formAuthentication" class="mb-3" action="auth-forgot-password-basic.php" method="POST">
+              <form id="formAuthentication" class="mb-3" action="../php/auth-forgot-password-basic.php" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button class="btn btn-primary d-grid w-100">Envoyer le lien de réinitialisation</button>
               </form>
               <div class="text-center">
-                <a href="index.php" class="d-flex align-items-center justify-content-center">
+                <a href="../index.php" class="d-flex align-items-center justify-content-center">
                   <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
                   Page de connexion
                 </a>
